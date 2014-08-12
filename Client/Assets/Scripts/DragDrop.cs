@@ -7,6 +7,7 @@ public class DragDrop : MonoBehaviour {
 	
 	public float _gridOffset = 0.5f;
 	public float _gridScale = 1.0f;
+	public float _snapTime = 0.2f;
 
 	private Vector3 _mousePoint;
 	private Vector3 _touchPoint;
@@ -26,7 +27,9 @@ public class DragDrop : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		transform.localPosition = GetClosestSnapPoint();
+		// Tween to the position
+		var config = new GoTweenConfig().setEaseType( GoEaseType.ExpoOut ).position( GetClosestSnapPoint(), false );
+		Go.to(transform, _snapTime, config);
 	}
 
 	private Vector3 GetClosestSnapPoint() {
