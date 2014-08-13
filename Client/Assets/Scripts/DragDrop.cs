@@ -2,6 +2,7 @@
 // Allows dragging and dropping an item on the grid
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DragDrop : MonoBehaviour {
 	
@@ -17,7 +18,10 @@ public class DragDrop : MonoBehaviour {
 	GoTweenConfig _tweenUp;
 	GoTweenConfig _tweenDown;
 
+	List<GoTween> _currentTweens;
+
 	void Awake() {
+		_currentTweens = new List<GoTween>();
 		_tweenUp = new GoTweenConfig().setEaseType( GoEaseType.CubicOut ).scale(this.transform.localScale * _holdScale);
 		_tweenDown = new GoTweenConfig().setEaseType( GoEaseType.CubicOut ).scale(this.transform.localScale);
 	}
@@ -27,7 +31,12 @@ public class DragDrop : MonoBehaviour {
 		_mousePoint = CalcMousePoint();
 		// Save the touch point
 		_touchPoint = _mousePoint;
-		Go.to(transform, _snapTime, _tweenUp);
+		// Set Z position
+		transform.Translate(Vector3.back);
+		// Complete old tweens
+		FinishOldTweens();
+		// Tween up
+		_currentTweens.Add(Go.to(transform, _snapTime, _tweenUp));
 	}
 
 	// Translate the object based on how the mouse moved
@@ -41,12 +50,26 @@ public class DragDrop : MonoBehaviour {
 
 	// Drop the item into the grid
 	void OnMouseUp() {
+		// Set Z position
+		transform.Translate(Vector3.forward);
 		// Tween to the closest tile position
-		GoTweenConfig tweenConfig = new GoTweenConfig()
+		GoTweenConfig tweenToGrid = new GoTweenConfig()
 			.setEaseType( GoEaseType.ExpoOut )
 			.position(GetClosestSnapPoint(), false);
-		Go.to(transform, _snapTime, tweenConfig);
-		Go.to(transform, _snapTime, _tweenDown);
+		// Complete old tweens
+		FinishOldTweens();
+		// Tween down
+		_currentTweens.Add(Go.to(transform, _snapTime, tweenToGrid));
+		_currentTweens.Add(Go.to(transform, _snapTime, _tweenDown));
+	}
+
+	private void FinishOldTweens() {
+		if (_currentTweens != null) {
+			foreach (GoTween tween in _currentTweens) {
+				tween.complete();
+			}
+			_currentTweens.Clear();
+		}
 	}
 
 	// Returns the mouse position in world coordinates
