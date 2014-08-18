@@ -1,0 +1,117 @@
+{
+	"levels": [
+		{
+			"title": "Click and drag to capture the king",
+			"fen": "4k3/8/8/8/8/8/8/4R3"
+		},
+
+		{
+			"title": "The opponent is stationary",
+			"fen": "8/2k5/8/8/8/2N5/8/8"
+		},
+
+		{
+			
+			"title": "You become pieces that you capture",
+			"fen": "7k/8/8/4r3/8/8/3P4/8"
+		},
+
+		{
+			
+			"title": "The opponent will capture you if possible",
+			"fen": "2k4r/8/2r5/8/4r3/8/3P4/8"
+		},
+
+		{
+			
+			"title": "It might be like a maze",
+			"fen": "rk3b1r/8/2r5/1pr4p/4r3/1rp4b/2r5/1P6"
+		},
+
+		// A  level where you need to get the knight
+		{
+			
+			"title": "Find the correct path",
+			"fen": "rn2kb1r/pqp2p1p/1p3np1/3pr3/3B4/8/7b/8"
+		},
+
+		// A tough level where you need to use the enemy bishop to capture the rook
+		{
+			
+			"title": "Roundabout",
+			"fen": "rn2kb1r/5q2/2p2p1p/1p3np1/p2pr3/8/8/3B3b"
+		},
+
+		{
+			
+			"title": "Sacrifice I",
+			"fen": "6k1/6p1/3n4/3p4/1r6/8/B3P3/8"
+		},
+
+		{
+			
+			"title": "Sacrifice II",
+			"fen": "5n1k/8/5n1n/8/B7/8/B7/1B1B4"
+		},
+
+		{
+			
+			"title": "Standoff",
+			"fen": "8/4k3/3ppp2/7q/2PPP3/3K4/8/8"
+		},
+
+		{
+			
+			"title": "Knight Pyramid",
+			"fen": "1nnnknn1/2nbbn2/3nn3/8/8/3PP3/3PP3/3PP3"
+		},
+
+		// A level that requires an early sacrifice
+		{
+			
+			"title": "Sacrifice III",
+			"fen": "1k1rpb2/1p2p3/2p4r/p1rpnr2/8/8/3PP3/8"
+		},
+
+		// Ram your forces through the left side of the board to clear out the queen and finally, the king.
+		{ 	
+			"title": "Pawn Palace",
+			"fen": "1ppqkpp1/1ppnnpp1/1pppppp1/1pppppp1/8/8/2PPPP2/NNBQKBNN"
+		},
+
+		{ 	
+			"title": "Outpost",
+			"fen": "n3rrk1/1n2ppbq/6pp/8/8/3P4/2PKPP2/8"
+		},
+
+		{ 	
+			"title": "Frontline",
+			"fen": "2rqkr2/3rr3/3bb3/2nnnn2/1pppppp1/8/PPPPPPPP/8"
+		},
+
+		{ 	
+			"title": "Lure",
+			"fen": "2q1n3/3k4/2n2p2/p3pP2/1p1p2Pp/1PpP3p/P1P1P2P/1N6"
+		},
+
+		{ 	
+			"title": "X-Ray I",
+			"fen": "4r2k/5n1n/3ppppp/8/8/8/5PPP/6R1"
+		},
+
+		{ 	
+			"title": "X-Ray II",
+			"fen": "1r2r2k/5nb1/pn1pppbp/2p3p1/8/2P1P1P1/PP1P3P/8"
+		},
+
+		{ 	
+			"title": "Chevron",
+			"fen": "rnbq1rk1/pppnppbp/3p2p1/3P4/2P1P3/1P3P2/P5P1/8"
+		},
+
+		{ 	
+			"title": "Columns",
+			"fen": "r3k2r/pp1q1pbp/2np1np1/2p1p3/2P1P3/2P1P3/2P1P3/1P3P2"
+		}
+	]
+}
