@@ -47,9 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\GoDummyPathEditor.cs" />
+     <None Include="Assets\Plugins\HOTween\HOTween_License.txt" />
      <None Include="Assets\Plugins\GoKit\easing\easeEquationsLicense.txt" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="HOTween">
+ <HintPath>C:/Users/Mark/Documents/GitHub/OnePawnArmy/Client/Assets/Plugins/HOTween/HOTween.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

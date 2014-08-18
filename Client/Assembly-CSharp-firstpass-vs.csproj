@@ -111,7 +111,11 @@
      <Compile Include="Assets\Plugins\GoKit\properties\splines\GoSplineCubicBezierSolver.cs" />
      <Compile Include="Assets\Plugins\GoKit\properties\splines\GoSplineQuadraticBezierSolver.cs" />
      <Compile Include="Assets\Plugins\GoKit\properties\splines\GoSplineStraightLineSolver.cs" />
+     <None Include="Assets\Plugins\HOTween\HOTween_License.txt" />
      <None Include="Assets\Plugins\GoKit\easing\easeEquationsLicense.txt" />
+ <Reference Include="HOTween">
+ <HintPath>C:/Users/Mark/Documents/GitHub/OnePawnArmy/Client/Assets/Plugins/HOTween/HOTween.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

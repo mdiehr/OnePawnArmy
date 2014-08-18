@@ -46,8 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BoardDef.cs" />
      <Compile Include="Assets\Scripts\DragDrop.cs" />
+     <Compile Include="Assets\Scripts\GameConstants.cs" />
+     <Compile Include="Assets\Scripts\TileDef.cs" />
+     <None Include="Assets\Plugins\HOTween\HOTween_License.txt" />
      <None Include="Assets\Plugins\GoKit\easing\easeEquationsLicense.txt" />
+ <Reference Include="HOTween">
+ <HintPath>C:/Users/Mark/Documents/GitHub/OnePawnArmy/Client/Assets/Plugins/HOTween/HOTween.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

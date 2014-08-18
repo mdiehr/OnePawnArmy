@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using Holoville.HOTween;
 
 public class DragDrop : MonoBehaviour {
 	
@@ -15,15 +16,13 @@ public class DragDrop : MonoBehaviour {
 	private Vector3 _touchPoint;
 	private Vector3 _delta;
 
-	GoTweenConfig _tweenUp;
-	GoTweenConfig _tweenDown;
-
-	List<GoTween> _currentTweens;
+	TweenParms _tweenUp;
+	TweenParms _tweenDown;
 
 	void Awake() {
-		_currentTweens = new List<GoTween>();
-		_tweenUp = new GoTweenConfig().setEaseType( GoEaseType.CubicOut ).scale(this.transform.localScale * _holdScale);
-		_tweenDown = new GoTweenConfig().setEaseType( GoEaseType.CubicOut ).scale(this.transform.localScale);
+		//_currentTweens = new List<GoTween>();
+		_tweenUp = new TweenParms().Prop("localScale", transform.localScale * _holdScale).Ease(EaseType.EaseOutCubic);
+		_tweenDown = new TweenParms().Prop("localScale", transform.localScale).Ease(EaseType.EaseOutCubic);
 	}
 
 	// Grab the mouse position
@@ -33,10 +32,8 @@ public class DragDrop : MonoBehaviour {
 		_touchPoint = _mousePoint;
 		// Set Z position
 		transform.Translate(Vector3.back);
-		// Complete old tweens
-		FinishOldTweens();
 		// Tween up
-		_currentTweens.Add(Go.to(transform, _snapTime, _tweenUp));
+		HOTween.To(transform, _snapTime, _tweenUp);
 	}
 
 	// Translate the object based on how the mouse moved
@@ -53,23 +50,12 @@ public class DragDrop : MonoBehaviour {
 		// Set Z position
 		transform.Translate(Vector3.forward);
 		// Tween to the closest tile position
-		GoTweenConfig tweenToGrid = new GoTweenConfig()
-			.setEaseType( GoEaseType.ExpoOut )
-			.position(GetClosestSnapPoint(), false);
-		// Complete old tweens
-		FinishOldTweens();
+		TweenParms tweenToGrid = new TweenParms()
+			.Prop( "localPosition", GetClosestSnapPoint() )
+			.Ease(EaseType.EaseInOutExpo);
 		// Tween down
-		_currentTweens.Add(Go.to(transform, _snapTime, tweenToGrid));
-		_currentTweens.Add(Go.to(transform, _snapTime, _tweenDown));
-	}
-
-	private void FinishOldTweens() {
-		if (_currentTweens != null) {
-			foreach (GoTween tween in _currentTweens) {
-				tween.complete();
-			}
-			_currentTweens.Clear();
-		}
+		HOTween.To(transform, _snapTime, tweenToGrid);
+		HOTween.To(transform, _snapTime, _tweenDown);
 	}
 
 	// Returns the mouse position in world coordinates
