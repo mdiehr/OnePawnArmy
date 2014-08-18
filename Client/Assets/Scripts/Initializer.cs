@@ -7,5 +7,7 @@ public class Initializer : MonoBehaviour {
 	void Awake() {
 		// Initialize modules & libraries
 		HOTween.Init();
+		// Load the levels
+		this.gameObject.AddComponent<LevelManager>();
 	}
 }

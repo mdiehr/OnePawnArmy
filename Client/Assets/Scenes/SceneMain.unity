@@ -384,6 +384,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1227304860}
+  - 114: {fileID: 1227304861}
   m_Layer: 0
   m_Name: GameWorld
   m_TagString: Untagged
@@ -406,6 +407,17 @@ Transform:
   - {fileID: 899037645}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1227304861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1227304859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4098feefa26dd439f98bc40c78c977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1883581771
 GameObject:
   m_ObjectHideFlags: 0
