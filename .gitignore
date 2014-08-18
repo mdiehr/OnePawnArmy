@@ -13,3 +13,5 @@
 /*.booproj
 Client/Client.userprefs
 *.sln
+*.csproj
+*.userprefs
