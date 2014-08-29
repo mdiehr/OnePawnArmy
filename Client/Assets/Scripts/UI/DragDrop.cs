@@ -7,8 +7,8 @@ using Holoville.HOTween;
 
 public class DragDrop : MonoBehaviour {
 	
-	public float _gridOffset = 0.5f;
-	public float _gridScale = 1.0f;
+	public float _gridOffset = 0.0f;
+	public float _gridScale = 128.0f;
 	public float _snapTime = 0.2f;
 	public float _holdScale = 1.25f;
 
