@@ -6,7 +6,7 @@ public class LevelDef {
 	public string fen;
 	public BoardDef board;
 
-	public static LevelDef FromDictionary(Dictionary<string, object> dictionary, int index = 0) {
+	public static LevelDef FromDictionary(Dictionary<string, object> dictionary, int index) {
 		LevelDef levelDef = new LevelDef();
 		levelDef.index = index;
 		levelDef.title = dictionary["title"] as string;
