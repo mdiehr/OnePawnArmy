@@ -10,8 +10,6 @@ public class LevelManager : MonoBehaviour {
 
 	private List<LevelDef> levels;
 
-
-
 	void Awake() {
 		// Remmeber the static instance
 		if (Instance == null && (this.GetType() == typeof(LevelManager)))
@@ -32,7 +30,7 @@ public class LevelManager : MonoBehaviour {
 			foreach(Dictionary<string, object> obj in levelList) {
 				LevelDef levelDef = LevelDef.FromDictionary(obj, index++);
 				levels.Add(levelDef);
-				//Debug.Log(levelDef.board.ToString());
+				Debug.Log(levelDef.board.ToString());
 			}
 		} else {
 			Debug.LogError("Couldn't load resource: levels.json");

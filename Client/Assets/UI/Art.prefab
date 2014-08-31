@@ -301,6 +301,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: white-square
+    x: 900
+    y: 1020
+    width: 4
+    height: 4
+    borderLeft: 1
+    borderRight: 1
+    borderTop: 1
+    borderBottom: 1
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: w-king
     x: 387
     y: 254
