@@ -4,8 +4,8 @@ public class BoardDef {
 	private TileDef[,] tiles;
 	public TileDef[,] Tiles { get { return tiles; } }
 
-	private int w;
-	private int h;
+	public int w;
+	public int h;
 
 	public BoardDef(int w, int h) {
 		this.tiles = new TileDef[w, h];

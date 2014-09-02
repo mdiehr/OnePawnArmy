@@ -36,4 +36,8 @@ public class LevelManager : MonoBehaviour {
 			Debug.LogError("Couldn't load resource: levels.json");
 		}
 	}
+
+	public LevelDef GetLevel(int index) {
+		return levels[index];
+	}
 }
