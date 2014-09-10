@@ -1,22 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-
-using MiniJSON;
 using System.Collections.Generic;
+using MiniJSON;
+using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-	public static LevelManager Instance;
-
+	private int currentLevelIndex = 7;
 	private List<LevelDef> levels;
+	public List<LevelDef> Levels { get; private set; }
 
+	// Events
+	public static Action<LevelDef> OnLevelLoaded;
+	private void RaiseOnLevelLoaded(LevelDef level) { if (OnLevelLoaded != null) OnLevelLoaded(level); }
+
+	public static LevelManager Instance;
 	void Awake() {
-		// Remmeber the static instance
+		// Remember the static instance
 		if (Instance == null && (this.GetType() == typeof(LevelManager)))
 			Instance = this;
 
 		levels = new List<LevelDef>();
+	}
 
+	void Start() {
 		Instance.Load();
 	}
 
@@ -30,8 +37,10 @@ public class LevelManager : MonoBehaviour {
 			foreach(Dictionary<string, object> obj in levelList) {
 				LevelDef levelDef = LevelDef.FromDictionary(obj, index++);
 				levels.Add(levelDef);
-				Debug.Log(levelDef.board.ToString());
+				//Debug.Log(levelDef.board.ToString());
 			}
+			// Notify the rest of the game
+			RaiseOnLevelLoaded(levels[currentLevelIndex]);
 		} else {
 			Debug.LogError("Couldn't load resource: levels.json");
 		}

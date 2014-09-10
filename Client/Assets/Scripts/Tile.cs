@@ -7,7 +7,9 @@ public class Tile : MonoBehaviour {
 
 	private bool _tileColor = true;
 	public bool TileColor {
-		get { return _tileColor; }
+		get {
+			return _tileColor;
+		}
 		set {
 			_tileColor = value;
 			_sprite.color = _tileColor ? Color.gray : Color.black;
@@ -19,8 +21,11 @@ public class Tile : MonoBehaviour {
 		_sprite = this.GetComponent<UISprite>();
 	}
 
-	public void SetTileDef(TileDef def) {
-		tileDef = def;
-		//def.owner == TileDef.TileOwner.black;
+	public void SetTileDef(TileDef tileDef) {
+		this.tileDef = tileDef;
+		string baseName = tileDef.type.ToString().ToLower();
+		if (tileDef.owner == TileDef.TileOwner.black)
+			baseName += "-outline";
+		_sprite.spriteName = baseName;
 	}
 }

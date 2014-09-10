@@ -1,11 +1,16 @@
 ﻿
 public class BoardDef {
 
+	public int w;
+	public int h;
+
 	private TileDef[,] tiles;
 	public TileDef[,] Tiles { get { return tiles; } }
 
-	public int w;
-	public int h;
+	public TileDef GetTile(int x, int y) {
+		// Note: The Y is flipped since the board on the screen has the origin in the lower left
+		return tiles[x, (h-1)-y];
+	}
 
 	public BoardDef(int w, int h) {
 		this.tiles = new TileDef[w, h];
@@ -29,15 +34,17 @@ public class BoardDef {
 		
 		for (int x = 0; x < w; ++x) {
 			for (int y = 0; y < h; ++y) {
-				this.tiles[x, y] = TileDef.FromId(fenLines[x][y]);
+				this.tiles[x, y] = TileDef.FromId(fenLines[y][x]);
 			}
 		}
+
+		// Flip it, vertically
 	}
 
 	public override string ToString() {
 		string output = "BoardDef:\n";
-		for (int x = 0; x < w; ++x) {
-			for (int y = 0; y < h; ++y) {
+		for (int y = 0; y < h; ++y) {
+			for (int x = 0; x < w; ++x) {
 				output += this.tiles[x, y].ToString();
 			}
 			output += "\n";
