@@ -9,5 +9,7 @@ public class Initializer : MonoBehaviour {
 		HOTween.Init();
 		// Load the levels
 		this.gameObject.AddComponent<LevelManager>();
+		this.gameObject.AddComponent<BoardManager>();
+		this.gameObject.AddComponent<UIManager>();
 	}
 }
