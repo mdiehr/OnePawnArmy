@@ -15,7 +15,7 @@ public class DraggablePawn : UIDragDropItem {
 	TweenParms _tweenDown;
 
 	UIWidget _widget;
-	private int _widgetDepthFront = 100;
+	private int _widgetDepthFront = 255;
 	private int _widgetDepthOld;
 
 	void Awake() {
@@ -30,6 +30,7 @@ public class DraggablePawn : UIDragDropItem {
 		// Move to front
 		_widgetDepthOld = _widget.depth;
 		_widget.depth = _widgetDepthFront;
+		_widget.SetDirty();
 
 		// Tween up
 		HOTween.To(transform, _snapTime, _tweenUp);
