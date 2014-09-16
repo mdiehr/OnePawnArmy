@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour {
 		}
 		set {
 			_tileColor = value;
-			_sprite.color = _tileColor ? Color.gray : Color.black;
+			_sprite.color = _tileColor ? GameConstants.colorLight : GameConstants.colorDark;
 		}
 	}
 
@@ -26,19 +26,17 @@ public class Tile : MonoBehaviour {
 
 		// Set sprite
 		string baseName = tileDef.type.ToString().ToLower();
-		//if (tileDef.owner == TileDef.TileOwner.black)
-		//	baseName += "-outline";
 		_sprite.spriteName = baseName;
 
 		// Set tile color
 		UIWidget widget = GetComponent<UIWidget>();
 		if (widget != null) {
 			if (tileDef.owner == TileDef.TileOwner.white) {
-				widget.color = GameConstants.colorBlue;
+				widget.color = GameConstants.colorWhite;
 			} else if (tileDef.owner == TileDef.TileOwner.black) {
-				widget.color = GameConstants.colorRed;
+				widget.color = GameConstants.colorBlack;
 			} else {
-				widget.color = GameConstants.colorBeige;
+				widget.color = GameConstants.colorNeutral;
 			}
 		}
 	}

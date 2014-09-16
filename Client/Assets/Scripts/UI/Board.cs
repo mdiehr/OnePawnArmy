@@ -13,7 +13,8 @@ public class Board : MonoBehaviour {
 	public GameObject MovableTilePrefab;
 
 	private int tileDepth = 1;
-	private int movableTileDepth = 100;
+	private const int movableTileDepthStart = 100;
+	private int movableTileDepth = movableTileDepthStart;
 
 	private List<Tile> _bgTiles;
 	private List<Tile> _movableTiles;
@@ -50,7 +51,7 @@ public class Board : MonoBehaviour {
 			if (widget != null) {
 				widget.depth = tileDepth++;
 			}
-			
+
 			// Set tile color
 			Tile tile = go.GetComponent<Tile>();
 			if (tile != null) {
@@ -105,6 +106,7 @@ public class Board : MonoBehaviour {
 			Destroy(tile.gameObject);
 		}
 		_movableTiles.Clear();
+		movableTileDepth = movableTileDepthStart;
 	}
 
 	// Catch event when a piece is dropped on this board
