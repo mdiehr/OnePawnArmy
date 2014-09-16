@@ -111,6 +111,6 @@ public class Board : MonoBehaviour {
 
 	// Catch event when a piece is dropped on this board
 	void OnDrop(GameObject go) {
-		Debug.Log (go.name);
+		Debug.Log ("[Board] " + go.name);
 	}
 }
