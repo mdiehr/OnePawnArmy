@@ -7,6 +7,7 @@ public class Board : MonoBehaviour {
 	public int gridWidth = GameConstants.BOARD_W;
 	public int gridHeight = GameConstants.BOARD_H;
 	public int cellSize = 128;
+	public int cellOffset = 64;
 	public Vector2 startPosition;
 
 	public GameObject TilePrefab;

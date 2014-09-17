@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 540.999878, z: 0}
+  m_LocalPosition: {x: 0, y: 541.499878, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400168}
@@ -123,12 +123,12 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3001
+  startingRenderQueue: 3003
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 2
+  mDepth: 10
   mSortingOrder: 0
   mClipOffset: {x: 0, y: 0}
 --- !u!114 &11400002
@@ -145,6 +145,7 @@ MonoBehaviour:
   gridWidth: 8
   gridHeight: 8
   cellSize: 128
+  cellOffset: 64
   startPosition: {x: -448, y: -960}
   TilePrefab: {fileID: 100000, guid: eec7a355597af41479c6c205f84c5dad, type: 2}
   MovableTilePrefab: {fileID: 100000, guid: 213452b6345bca744b746b411a21e339, type: 2}

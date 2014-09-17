@@ -7,10 +7,6 @@ public class DraggablePawn : UIDragDropItem {
 	public float _snapTime = 0.2f;
 	public float _holdScale = 1.25f;
 
-	// TODO: Move these to the board script
-	private float _gridOffset = 64.0f;
-	private float _gridScale = 128.0f;
-
 	TweenParms _tweenUp;
 	TweenParms _tweenDown;
 
@@ -20,10 +16,13 @@ public class DraggablePawn : UIDragDropItem {
 
 	private Vector3 _prevPosition;
 
+	private Board _board;
+
 	void Awake() {
 		_tweenUp = new TweenParms().Prop("localScale", transform.localScale * _holdScale).Ease(EaseType.EaseOutCubic);
 		_tweenDown = new TweenParms().Prop("localScale", transform.localScale).Ease(EaseType.EaseOutCubic).OnComplete(this.OnTweenedDown);
 		_widget = this.GetComponent<UIWidget>();
+		_board = NGUITools.FindInParents<Board>(this.transform);
 	}
 
 	protected override void OnDragDropStart() {
@@ -41,20 +40,12 @@ public class DraggablePawn : UIDragDropItem {
 		HOTween.To(transform, _snapTime, _tweenUp);
 	}
 
-	protected override void OnDragDropMove (Vector2 delta) {
-		base.OnDragDropMove(delta);
-	}
-
-	protected override void OnDragDropEnd () {
-		base.OnDragDropEnd();
-		Debug.Log("[DraggablePawn] OnDragDropEnd\n");
-	}
-
 	protected override void OnDragDropRelease (GameObject surface) {
 		base.OnDragDropRelease(surface);
 
 		if (surface == null) {
 			Debug.LogError ("Pawn dropped onto a null surface. Was expecting to land on something.");
+			RevertPosition();
 			return;
 		}
 
@@ -89,11 +80,18 @@ public class DraggablePawn : UIDragDropItem {
 
 	// Returns a vector that is snapped to the nearest point on the grid
 	private Vector3 GetClosestSnapPoint(Board board) {
+		// Get info from board
+		float cellSize = board.cellSize;
+		float cellOffset = board.cellOffset;
+		// Calculate game logic coordinates
 		Vector3 position = transform.localPosition;
-		float x = position.x - _gridOffset;
-		float y = position.y - _gridOffset;
-		x = Mathf.Round(x/board.cellSize) * board.cellSize + _gridOffset;
-		y = Mathf.Round(y/board.cellSize) * board.cellSize + _gridOffset;
+		float x = position.x - cellOffset;
+		float y = position.y - cellOffset;
+		int xi = Mathf.RoundToInt(x/cellSize) + board.gridWidth/2;
+		int yi = Mathf.RoundToInt(y/cellSize) + board.gridHeight;
+		Debug.Log("New piece coordinates: " + xi + ", " + yi + "\n");
+		x = Mathf.Round(x/board.cellSize) * cellSize + cellOffset;
+		y = Mathf.Round(y/board.cellSize) * cellSize + cellOffset;
 		return new Vector3(x, y, 0f);
 	}
 
