@@ -347,7 +347,7 @@ MonoBehaviour:
     height: 126
     borderLeft: 2
     borderRight: 2
-    borderTop: 0
+    borderTop: 120
     borderBottom: 2
     paddingLeft: 0
     paddingRight: 0
