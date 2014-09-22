@@ -16,13 +16,10 @@ public class DraggablePawn : UIDragDropItem {
 
 	private Vector3 _prevPosition;
 
-	private Board _board;
-
 	void Awake() {
 		_tweenUp = new TweenParms().Prop("localScale", transform.localScale * _holdScale).Ease(EaseType.EaseOutCubic);
 		_tweenDown = new TweenParms().Prop("localScale", transform.localScale).Ease(EaseType.EaseOutCubic).OnComplete(this.OnTweenedDown);
 		_widget = this.GetComponent<UIWidget>();
-		_board = NGUITools.FindInParents<Board>(this.transform);
 	}
 
 	protected override void OnDragDropStart() {
@@ -43,21 +40,10 @@ public class DraggablePawn : UIDragDropItem {
 	protected override void OnDragDropRelease (GameObject surface) {
 		base.OnDragDropRelease(surface);
 
-		if (surface == null) {
-			Debug.LogError ("Pawn dropped onto a null surface. Was expecting to land on something.");
-			RevertPosition();
-			return;
-		}
-
-		Debug.Log("[DraggablePawn] OnDragDropRelease " + surface + "\n");
-
-		if (surface != null) {
-			Board board = surface.GetComponent<Board>();
-			if (board != null) {
-				SnapTo(GetClosestSnapPoint(board));
-			} else {
-				RevertPosition();
-			}
+		if (BoardManager.Instance.CanDropHere(transform.localPosition)) {
+			Vector3 snapPoint = BoardManager.Instance.GetSnapPoint(transform.localPosition);
+			SnapTo(snapPoint);
+			BoardManager.Instance.PieceDropped(this);
 		} else {
 			RevertPosition();
 		}
@@ -76,23 +62,6 @@ public class DraggablePawn : UIDragDropItem {
 
 	private void RevertPosition() {
 		SnapTo(_prevPosition);
-	}
-
-	// Returns a vector that is snapped to the nearest point on the grid
-	private Vector3 GetClosestSnapPoint(Board board) {
-		// Get info from board
-		float cellSize = board.cellSize;
-		float cellOffset = board.cellOffset;
-		// Calculate game logic coordinates
-		Vector3 position = transform.localPosition;
-		float x = position.x - cellOffset;
-		float y = position.y - cellOffset;
-		int xi = Mathf.RoundToInt(x/cellSize) + board.gridWidth/2;
-		int yi = Mathf.RoundToInt(y/cellSize) + board.gridHeight;
-		Debug.Log("New piece coordinates: " + xi + ", " + yi + "\n");
-		x = Mathf.Round(x/board.cellSize) * cellSize + cellOffset;
-		y = Mathf.Round(y/board.cellSize) * cellSize + cellOffset;
-		return new Vector3(x, y, 0f);
 	}
 
 	private void OnTweenedDown() {

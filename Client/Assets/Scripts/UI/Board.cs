@@ -27,6 +27,7 @@ public class Board : MonoBehaviour {
 		_movableTiles = new List<Tile>();
 
 		BoardManager.OnBoardLoaded += OnBoardLoaded;
+		BoardManager.Instance.RegisterBoard(this);
 	}
 
 	void Start() {
@@ -47,6 +48,7 @@ public class Board : MonoBehaviour {
 			go.transform.parent = this.gameObject.transform;
 			go.transform.localPosition = position;
 			go.name = "Square:"+x+","+y;
+
 			// Set widget depth
 			UIWidget widget = go.GetComponent<UIWidget>();
 			if (widget != null) {
@@ -66,11 +68,11 @@ public class Board : MonoBehaviour {
 		ShowLevel(boardDef);
 	}
 	
-	public void ShowLevel(BoardDef board) {
+	public void ShowLevel(BoardDef boardDef) {
 		ClearMovableTiles();
-		for (int x = 0; x < board.w; ++x) {
-			for (int y = 0; y < board.h; ++y) {
-				CreateMovableTile(x, y, board.GetTile(x,y));
+		for (int x = 0; x < boardDef.w; ++x) {
+			for (int y = 0; y < boardDef.h; ++y) {
+				CreateMovableTile(x, y, boardDef.GetTile(x,y));
 			}
 		}
 	}
@@ -108,10 +110,5 @@ public class Board : MonoBehaviour {
 		}
 		_movableTiles.Clear();
 		movableTileDepth = movableTileDepthStart;
-	}
-
-	// Catch event when a piece is dropped on this board
-	void OnDrop(GameObject go) {
-		Debug.Log ("[Board] " + go.name);
 	}
 }
