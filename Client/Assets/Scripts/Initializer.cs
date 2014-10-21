@@ -11,5 +11,7 @@ public class Initializer : MonoBehaviour {
 		this.gameObject.AddComponent<LevelManager>();
 		this.gameObject.AddComponent<BoardManager>();
 		this.gameObject.AddComponent<UIManager>();
+		this.gameObject.AddComponent<PlayManager>();
+		this.gameObject.AddComponent<DebugManager>();
 	}
 }

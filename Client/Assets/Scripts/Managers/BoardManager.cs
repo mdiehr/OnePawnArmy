@@ -1,13 +1,22 @@
-﻿using UnityEngine;
+﻿// Board Manager
+// Responsible for the board state, placing pieces, and moving pices around
+
+using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class BoardManager : MonoBehaviour {
 
 	public static Action<BoardDef> OnBoardLoaded;
 	private void RaiseOnBoardLoaded(BoardDef board) { if (OnBoardLoaded != null) OnBoardLoaded(board); }
 
+	// Logical board state
+	private BoardDef _boardDef;
+	// UI board
 	private Board _board;
+
+	private Stack<BoardDef> _undoStack;
 
 	public static BoardManager Instance;
 	void Awake() {
@@ -15,10 +24,13 @@ public class BoardManager : MonoBehaviour {
 		if (Instance == null && (this.GetType() == typeof(BoardManager)))
 			Instance = this;
 
+		_undoStack = new Stack<BoardDef>();
+
 		LevelManager.OnLevelLoaded += OnLevelLoaded;
 	}
-
+	
 	void OnLevelLoaded(LevelDef level) {
+		_boardDef = level.board;
 		// Raise an event for the board inside this level. This is a useful indirection because the undo system will use boards.
 		RaiseOnBoardLoaded(level.board);
 	}
@@ -63,5 +75,26 @@ public class BoardManager : MonoBehaviour {
 	public void PieceDropped(DraggablePawn pawn) {
 		Vector2 coords = GetBoardCoordinates(pawn.transform.localPosition);
 		Debug.Log("<color=green>[BoardManager]</color> Piece dropped: " + pawn.gameObject.name + " at " + coords.x + ", " + coords.y + "\n");
+	}
+	
+	public TileDef GetTile(int x, int y) {
+		return _boardDef.GetTile(x, y);
+	}
+	
+	public void SaveBoardStateForUndo() {
+		_undoStack.Push(_boardDef);
+	}
+
+	public BoardDef PopBoardStateForUndo() {
+		return _undoStack.Pop();
+	}
+	
+	public void PutTileData(int x, int y, TileDef tile) {
+		_boardDef.PutTile(x, y, tile);
+	}
+	
+	public bool GetIsHighlighted(int x, int y) {
+		//TODO GetIsHighlighted
+		return true;
 	}
 }

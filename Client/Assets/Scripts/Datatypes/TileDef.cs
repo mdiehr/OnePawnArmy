@@ -1,4 +1,7 @@
-﻿public class TileDef {
+﻿// TileDef
+// Data type for the contents of one tile in the board
+
+public class TileDef {
 
 	public enum TileOwner {
 		nobody = 0,

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Level Manager
+// Responsible for managing the list of levels that can be played by the player
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;

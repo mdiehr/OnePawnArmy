@@ -11,6 +11,10 @@ public class BoardDef {
 		// Note: The Y is flipped since the board on the screen has the origin in the lower left
 		return tiles[x, (h-1)-y];
 	}
+	
+	public void PutTile(int x, int y, TileDef tileDef) {
+		tiles[x, (h-1)-y] = tileDef;
+	}
 
 	public BoardDef(int w, int h) {
 		this.tiles = new TileDef[w, h];

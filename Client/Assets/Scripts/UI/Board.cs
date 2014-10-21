@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Board
+// Sets up a BoardDef to display on the screen
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
